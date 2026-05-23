@@ -7,7 +7,7 @@ import { isDevEnvironment } from "../utils/misc";
 
 const SERVICE_ACCOUNT_PATH = path.join(
   __dirname,
-  "../../src/credentials/serviceAccountKey.json",
+  "../../credentials/serviceAccountKey.json",
 );
 
 export function init(): void {

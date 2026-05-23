@@ -85,6 +85,9 @@ serviceAccountKey*.json
 !docker/serviceAccountKey-example.json
 frontend/src/ts/constants/firebase-config.ts
 frontend/src/ts/constants/firebase-config-live.ts
+backend/credentials/
+backend/src/credentials/
+*.firebase-adminsdk*.json
 
 #generated files
 dist/
