@@ -64,6 +64,7 @@ export const ThemeNameSchema = z.enum(
     "fruit_chew",
     "fundamentals",
     "future_funk",
+    "galaxy",
     "github",
     "godspeed",
     "graen",

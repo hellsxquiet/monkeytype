@@ -1,0 +1,258 @@
+@keyframes galaxy-caret {
+  0%,
+  100% {
+    background: #f8d97a;
+    box-shadow:
+      0 0 0.9rem rgba(248, 217, 122, 0.55),
+      0 0 2rem rgba(158, 231, 255, 0.28);
+  }
+
+  50% {
+    background: #9ee7ff;
+    box-shadow:
+      0 0 1.1rem rgba(158, 231, 255, 0.7),
+      0 0 2.6rem rgba(138, 111, 209, 0.36);
+  }
+}
+
+@keyframes galaxy-glow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0.45rem rgba(158, 231, 255, 0.35),
+      0 0 1.1rem rgba(138, 111, 209, 0.18);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0.65rem rgba(248, 217, 122, 0.3),
+      0 0 1.4rem rgba(255, 143, 179, 0.18);
+  }
+}
+
+body {
+  background:
+    radial-gradient(
+      circle at 2% 8%,
+      rgba(255, 255, 255, 0.95) 0 0.08rem,
+      transparent 0.13rem
+    ),
+    radial-gradient(
+      circle at 7% 47%,
+      rgba(255, 255, 255, 0.8) 0 0.07rem,
+      transparent 0.11rem
+    ),
+    radial-gradient(
+      circle at 13% 27%,
+      rgba(158, 231, 255, 0.78) 0 0.08rem,
+      transparent 0.13rem
+    ),
+    radial-gradient(
+      circle at 18% 67%,
+      rgba(248, 217, 122, 0.7) 0 0.07rem,
+      transparent 0.13rem
+    ),
+    radial-gradient(
+      circle at 23% 13%,
+      rgba(255, 255, 255, 0.85) 0 0.06rem,
+      transparent 0.11rem
+    ),
+    radial-gradient(
+      circle at 29% 84%,
+      rgba(158, 231, 255, 0.72) 0 0.07rem,
+      transparent 0.13rem
+    ),
+    radial-gradient(
+      circle at 36% 39%,
+      rgba(255, 255, 255, 0.86) 0 0.07rem,
+      transparent 0.12rem
+    ),
+    radial-gradient(
+      circle at 43% 7%,
+      rgba(255, 255, 255, 0.72) 0 0.06rem,
+      transparent 0.11rem
+    ),
+    radial-gradient(
+      circle at 48% 63%,
+      rgba(255, 143, 179, 0.66) 0 0.07rem,
+      transparent 0.13rem
+    ),
+    radial-gradient(
+      circle at 55% 27%,
+      rgba(255, 255, 255, 0.92) 0 0.09rem,
+      rgba(158, 231, 255, 0.28) 0.14rem,
+      transparent 0.23rem
+    ),
+    radial-gradient(
+      circle at 61% 76%,
+      rgba(248, 217, 122, 0.72) 0 0.07rem,
+      transparent 0.13rem
+    ),
+    radial-gradient(
+      circle at 68% 11%,
+      rgba(255, 255, 255, 0.78) 0 0.06rem,
+      transparent 0.11rem
+    ),
+    radial-gradient(
+      circle at 73% 49%,
+      rgba(158, 231, 255, 0.8) 0 0.08rem,
+      transparent 0.14rem
+    ),
+    radial-gradient(
+      circle at 81% 31%,
+      rgba(255, 255, 255, 0.82) 0 0.07rem,
+      transparent 0.13rem
+    ),
+    radial-gradient(
+      circle at 86% 88%,
+      rgba(248, 217, 122, 0.66) 0 0.07rem,
+      transparent 0.13rem
+    ),
+    radial-gradient(
+      circle at 94% 55%,
+      rgba(255, 255, 255, 0.88) 0 0.07rem,
+      transparent 0.12rem
+    ),
+    radial-gradient(
+      circle at 97% 15%,
+      rgba(158, 231, 255, 0.7) 0 0.06rem,
+      transparent 0.12rem
+    ),
+    radial-gradient(
+      circle at 8% 86%,
+      rgba(255, 255, 255, 0.7) 0 0.05rem,
+      transparent 0.1rem
+    ),
+    radial-gradient(
+      circle at 17% 8%,
+      rgba(248, 217, 122, 0.58) 0 0.05rem,
+      transparent 0.1rem
+    ),
+    radial-gradient(
+      circle at 27% 51%,
+      rgba(255, 255, 255, 0.72) 0 0.05rem,
+      transparent 0.09rem
+    ),
+    radial-gradient(
+      circle at 38% 74%,
+      rgba(158, 231, 255, 0.64) 0 0.05rem,
+      transparent 0.1rem
+    ),
+    radial-gradient(
+      circle at 45% 92%,
+      rgba(255, 255, 255, 0.74) 0 0.05rem,
+      transparent 0.1rem
+    ),
+    radial-gradient(
+      circle at 64% 42%,
+      rgba(255, 255, 255, 0.7) 0 0.05rem,
+      transparent 0.09rem
+    ),
+    radial-gradient(
+      circle at 78% 72%,
+      rgba(158, 231, 255, 0.64) 0 0.05rem,
+      transparent 0.1rem
+    ),
+    radial-gradient(
+      circle at 89% 8%,
+      rgba(255, 255, 255, 0.76) 0 0.05rem,
+      transparent 0.09rem
+    ),
+    radial-gradient(
+      circle at 95% 83%,
+      rgba(255, 255, 255, 0.72) 0 0.05rem,
+      transparent 0.1rem
+    ),
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 35%,
+      rgba(158, 231, 255, 0.08) 43%,
+      rgba(248, 217, 122, 0.14) 49%,
+      rgba(138, 111, 209, 0.16) 55%,
+      transparent 66%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse at 22% 28%,
+      rgba(138, 111, 209, 0.32) 0%,
+      transparent 36%
+    ),
+    radial-gradient(
+      ellipse at 76% 70%,
+      rgba(158, 231, 255, 0.2) 0%,
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 54% 48%,
+      rgba(255, 95, 126, 0.14) 0%,
+      transparent 42%
+    ),
+    linear-gradient(135deg, #03040d 0%, #080b1d 46%, #12071b 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#app {
+  background: radial-gradient(
+    circle at center,
+    rgba(6, 7, 19, 0) 0%,
+    rgba(6, 7, 19, 0.18) 70%,
+    rgba(6, 7, 19, 0.34) 100%
+  );
+}
+
+#caret {
+  animation: galaxy-caret 4s ease-in-out infinite;
+}
+
+[data-ui-element="logoText"],
+[data-ui-element="logoSubtext"],
+#result .stats .group .bottom {
+  animation: galaxy-glow 6s ease-in-out infinite;
+}
+
+[data-ui-element="logo"] svg {
+  filter: drop-shadow(0 0 0.45rem rgba(158, 231, 255, 0.45))
+    drop-shadow(0 0 1rem rgba(138, 111, 209, 0.22));
+}
+
+[data-nav-item] {
+  --themable-button-text: var(--sub-color);
+  --themable-button-hover-text: var(--main-color);
+}
+
+button:hover,
+.button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+  box-shadow:
+    0 0 0.7rem rgba(158, 231, 255, 0.16),
+    0 0 1.5rem rgba(138, 111, 209, 0.12);
+}
+
+[data-nav-item]:hover,
+footer button:hover,
+a:not(.button):not([data-ui-variant="button"]):hover {
+  color: var(--main-color);
+  background: none;
+  text-shadow:
+    0 0 0.5rem rgba(158, 231, 255, 0.45),
+    0 0 1.2rem rgba(138, 111, 209, 0.2);
+}
+
+#words {
+  --untyped-letter-color: rgba(138, 111, 209, 0.72);
+  text-shadow: 0 0 1.2rem rgba(158, 231, 255, 0.07);
+}
+
+#words .word letter.correct,
+#words .word.typed letter.correct,
+#words.highlight-word .word.typed letter,
+#words.highlight-next-word .word.typed letter,
+#words.highlight-next-two-words .word.typed letter,
+#words.highlight-next-three-words .word.typed letter {
+  color: var(--text-color);
+}
