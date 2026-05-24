@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash 'D:\\.DevWorkspace\\Web\\forks\\monkeytype\\.codex\\hooks\\format-and-lint.sh'"
+          }
+        ]
+      }
+    ]
+  }
+}

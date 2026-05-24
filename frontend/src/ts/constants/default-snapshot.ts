@@ -50,6 +50,7 @@ export type Snapshot = Omit<
   | "timeTyping"
   | "startedTests"
   | "completedTests"
+  | "totalWordsTyped"
   | "profileDetails"
   | "streak"
   | "resultFilterPresets"
@@ -62,6 +63,7 @@ export type Snapshot = Omit<
     timeTyping: number;
     startedTests: number;
     completedTests: number;
+    totalWordsTyped?: number;
   };
   details?: UserProfileDetails;
   inboxUnreadSize: number;
@@ -95,6 +97,7 @@ const defaultSnap = {
     timeTyping: 0,
     startedTests: 0,
     completedTests: 0,
+    totalWordsTyped: 0,
   },
   quoteRatings: undefined,
   quoteMod: false,

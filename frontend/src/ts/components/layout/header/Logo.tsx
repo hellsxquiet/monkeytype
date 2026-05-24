@@ -1,4 +1,4 @@
-import { JSXElement } from "solid-js";
+import { JSXElement, Show } from "solid-js";
 
 import { restartTestEvent } from "../../../events/test";
 import { getActivePage } from "../../../states/core";
@@ -10,7 +10,7 @@ export function Logo(): JSXElement {
   return (
     <a
       href={`${location.origin}/`}
-      class="-m-2 flex h-6 w-max gap-2 rounded-[0.8rem] p-2 focus-visible:**:data-[ui-element='logoSubtext']:text-transparent"
+      class="-m-2 flex h-6 w-max items-center gap-2 rounded-[0.8rem] p-2 focus-visible:**:data-[ui-element='logoSubtext']:text-transparent"
       aria-label="Monkeytype Home"
       router-link
       style={{
@@ -51,7 +51,7 @@ export function Logo(): JSXElement {
           )}
           data-ui-element="logoSubtext"
         >
-          {isDevEnvironment() ? "localhost" : "monkey see"}
+          monkey see
         </div>
         <h1
           class={cn("-mt-[0.11em] text-text transition-colors duration-250", {
@@ -62,6 +62,19 @@ export function Logo(): JSXElement {
           monkeytype
         </h1>
       </div>
+      <Show when={isDevEnvironment()}>
+        <span
+          class={cn(
+            "hidden rounded-half bg-sub-alt px-2 py-1 text-xs leading-none tracking-normal text-sub transition-opacity duration-125 md:inline",
+            {
+              "opacity-(--nav-focus-opacity)": getFocus(),
+            },
+          )}
+          title="Local development"
+        >
+          localhost
+        </span>
+      </Show>
     </a>
   );
 }

@@ -163,6 +163,11 @@ export const leaderboardsContract = c.router(
       },
       metadata: meta({
         authenticationOptions: { isPublic: true },
+        requireConfiguration: {
+          path: "leaderboards.enabled",
+          invalidMessage:
+            "All-time leaderboards are not available at this time.",
+        },
       }),
     },
     getRank: {
@@ -177,6 +182,11 @@ export const leaderboardsContract = c.router(
       },
       metadata: meta({
         authenticationOptions: { acceptApeKeys: true },
+        requireConfiguration: {
+          path: "leaderboards.enabled",
+          invalidMessage:
+            "All-time leaderboards are not available at this time.",
+        },
       }),
     },
     getDaily: {

@@ -672,6 +672,7 @@ describe("result controller test", () => {
           tags: ["tagOneId", "tagTwoId"],
           testDuration: 15.1,
           uid: uid,
+          wordsTyped: 25,
           wpm: 80,
         }),
       );
@@ -679,12 +680,14 @@ describe("result controller test", () => {
       expect(publicUpdateStatsMock).toHaveBeenCalledWith(
         4,
         15.1 + 2 - 5, //duration + incompleteTestSeconds-afk
+        25,
       );
       expect(userIncrementXpMock).toHaveBeenCalledWith(uid, 0);
       expect(userUpdateTypingStatsMock).toHaveBeenCalledWith(
         uid,
         4,
         15.1 + 2 - 5, //duration + incompleteTestSeconds-afk
+        25,
       );
     });
     it("should fail if result saving is disabled", async () => {
@@ -810,6 +813,7 @@ function buildCompletedEvent(result?: Partial<CompletedEvent>): CompletedEvent {
     testDuration: 15.1,
     timestamp: 1000,
     uid,
+    wordsTyped: 25,
     wpmConsistency: 55,
     wpm: 80,
     stopOnLetter: false,

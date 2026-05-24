@@ -67,7 +67,7 @@ export function AboutPage(): JSXElement {
           errorMessage="Failed to get global typing stats"
         >
           {({ typingStatsData }) => (
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-4">
               <For
                 each={
                   [
@@ -79,6 +79,10 @@ export function AboutPage(): JSXElement {
                     [
                       "total tests completed",
                       () => typingStatsData()?.testsCompleted,
+                    ],
+                    [
+                      "total words typed",
+                      () => typingStatsData()?.totalWordsTyped,
                     ],
                   ] as const
                 }
@@ -315,7 +319,7 @@ export function AboutPage(): JSXElement {
           <Button
             text="github"
             fa={{ icon: "fa-github", variant: "brand" }}
-            href="https://github.com/monkeytypegame/monkeytype"
+            href="https://github.com/hellsxquiet/monkeytype"
             class="w-full p-8"
           />
         </div>

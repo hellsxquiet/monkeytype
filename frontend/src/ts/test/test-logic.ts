@@ -868,6 +868,7 @@ function buildCompletedEvent(
     chartData: chartData,
     customText: customText,
     testDuration: duration,
+    wordsTyped: countTypedWords(),
     afkDuration: afkDuration,
     stopOnLetter: Config.stopOnError === "letter",
   };
@@ -876,6 +877,13 @@ function buildCompletedEvent(
   if (completedEvent.mode !== "quote") delete completedEvent.quoteLength;
 
   return completedEvent;
+}
+
+function countTypedWords(): number {
+  return TestInput.input
+    .getHistory()
+    .flatMap((word) => word.trim().split(/\s+/))
+    .filter((word) => word !== "").length;
 }
 
 export async function finish(difficultyFailed = false): Promise<void> {
@@ -1248,7 +1256,19 @@ async function saveResult(
 
   setAccountButtonSpinner(true);
 
-  const response = await Ape.results.add({ body: { result } });
+  let response = await Ape.results.add({ body: { result } });
+  if (
+    response.status !== 200 &&
+    response.body.message === "Invalid request data schema" &&
+    result.wordsTyped !== undefined
+  ) {
+    const fallbackResult = structuredClone(result);
+    delete fallbackResult.wordsTyped;
+    //@ts-expect-error hash is regenerated for the fallback payload
+    delete fallbackResult.hash;
+    fallbackResult.hash = objectHash(fallbackResult);
+    response = await Ape.results.add({ body: { result: fallbackResult } });
+  }
 
   setAccountButtonSpinner(false);
 

@@ -22,6 +22,7 @@ import { ValidatedHtmlInputElement } from "../elements/input-validation";
 import { UserNameSchema } from "@monkeytype/schemas/users";
 import { remoteValidation } from "../utils/remote-validation";
 import { authEvent } from "../events/auth";
+import { isDevEnvironment } from "../utils/env";
 
 let signedInUser: UserCredential | undefined = undefined;
 
@@ -32,22 +33,24 @@ function show(credential: UserCredential): void {
     beforeAnimation: async (modalEl) => {
       signedInUser = credential;
 
-      if (!CaptchaController.isCaptchaAvailable()) {
+      const captchaEl = modalEl.qsr(".captcha");
+      if (isDevEnvironment()) {
+        captchaEl.hide();
+      } else if (!CaptchaController.isCaptchaAvailable()) {
         showErrorNotification(
           "Could not show google sign up popup: Captcha is not available. This could happen due to a blocked or failed network request. Please refresh the page or contact support if this issue persists.",
         );
         return;
+      } else {
+        captchaEl.show();
+        CaptchaController.reset("googleSignUpModal");
+        CaptchaController.render(captchaEl.native, "googleSignUpModal");
       }
-      CaptchaController.reset("googleSignUpModal");
-      CaptchaController.render(
-        modalEl.qsr(".captcha").native,
-        "googleSignUpModal",
-      );
       enableInput();
       disableButton();
     },
     afterAnimation: async () => {
-      if (!CaptchaController.isCaptchaAvailable()) {
+      if (!isDevEnvironment() && !CaptchaController.isCaptchaAvailable()) {
         void hide();
       }
     },
@@ -83,7 +86,9 @@ async function apply(): Promise<void> {
     return;
   }
 
-  const captcha = CaptchaController.getResponse("googleSignUpModal");
+  const captcha = isDevEnvironment()
+    ? "dev-captcha"
+    : CaptchaController.getResponse("googleSignUpModal");
   if (!captcha) {
     showNoticeNotification("Please complete the captcha");
     return;

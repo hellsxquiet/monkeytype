@@ -131,6 +131,7 @@ export async function resetUser(uid: string): Promise<void> {
         },
         completedTests: 0,
         startedTests: 0,
+        totalWordsTyped: 0,
         timeTyping: 0,
         lbMemory: {},
         bananas: 0,
@@ -596,6 +597,7 @@ export async function updateTypingStats(
   uid: string,
   restartCount: number,
   timeTyping: number,
+  totalWordsTyped: number,
 ): Promise<void> {
   await getUsersCollection().updateOne(
     { uid },
@@ -603,6 +605,7 @@ export async function updateTypingStats(
       $inc: {
         startedTests: restartCount + 1,
         completedTests: 1,
+        totalWordsTyped,
         timeTyping,
       },
     },
@@ -789,10 +792,16 @@ export async function getPersonalBests(
 
 export async function getStats(
   uid: string,
-): Promise<Pick<DBUser, "startedTests" | "completedTests" | "timeTyping">> {
+): Promise<
+  Pick<
+    DBUser,
+    "startedTests" | "completedTests" | "timeTyping" | "totalWordsTyped"
+  >
+> {
   const user = await getPartialUser(uid, "get stats", [
     "startedTests",
     "completedTests",
+    "totalWordsTyped",
     "timeTyping",
   ]);
 

@@ -57,8 +57,8 @@ async function updateLeaderboardAndNotifyChanges(
 }
 
 async function updateLeaderboards(): Promise<void> {
-  const { maintenance } = await getCachedConfiguration();
-  if (maintenance) {
+  const { leaderboards, maintenance } = await getCachedConfiguration();
+  if (maintenance || !leaderboards.enabled) {
     return;
   }
 

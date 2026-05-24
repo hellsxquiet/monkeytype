@@ -139,6 +139,7 @@ export async function initSnapshot(): Promise<Snapshot | false> {
       timeTyping: userData.timeTyping ?? 0,
       startedTests: userData.startedTests ?? 0,
       completedTests: userData.completedTests ?? 0,
+      totalWordsTyped: userData.totalWordsTyped,
     };
     snap.quoteMod = userData.quoteMod;
     snap.favoriteQuotes = userData.favoriteQuotes ?? {};
@@ -344,6 +345,7 @@ export function saveLocalResult(data: SaveLocalResultData): void {
       timeTyping: 0,
       startedTests: 0,
       completedTests: 0,
+      totalWordsTyped: 0,
     };
 
     const time =
@@ -354,6 +356,8 @@ export function saveLocalResult(data: SaveLocalResultData): void {
     snapshot.typingStats.timeTyping += time;
     snapshot.typingStats.startedTests += data.result.restartCount + 1;
     snapshot.typingStats.completedTests += 1;
+    snapshot.typingStats.totalWordsTyped ??= 0;
+    snapshot.typingStats.totalWordsTyped += getWordsTyped(data.result);
 
     if (data.isPb) {
       saveLocalPB(
@@ -395,6 +399,17 @@ export function saveLocalResult(data: SaveLocalResultData): void {
       breakdown: data.xpBreakdown,
     });
   }
+}
+
+function getWordsTyped(result: SnapshotResult<Mode>): number {
+  if (result.wordsTyped !== undefined) return result.wordsTyped;
+  if (result.mode === "words" && /^\d+$/.test(result.mode2)) {
+    const fixedWordCount = parseInt(result.mode2, 10);
+    if (fixedWordCount > 0) {
+      return fixedWordCount;
+    }
+  }
+  return Math.round((result.wpm / 60) * result.testDuration);
 }
 
 export function addXp(xp: number, breakdown?: XpBreakdown): void {

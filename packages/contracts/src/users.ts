@@ -740,6 +740,10 @@ export const usersContract = c.router(
       },
       metadata: meta({
         rateLimit: "quoteFavoriteGet",
+        requireConfiguration: {
+          path: "quotes.favoritesEnabled",
+          invalidMessage: "Quote favorites are not available at this time.",
+        },
       }),
     },
     addQuoteToFavorites: {
@@ -753,6 +757,10 @@ export const usersContract = c.router(
       },
       metadata: meta({
         rateLimit: "quoteFavoritePost",
+        requireConfiguration: {
+          path: "quotes.favoritesEnabled",
+          invalidMessage: "Quote favorites are not available at this time.",
+        },
       }),
     },
     removeQuoteFromFavorites: {
@@ -766,6 +774,10 @@ export const usersContract = c.router(
       },
       metadata: meta({
         rateLimit: "quoteFavoriteDelete",
+        requireConfiguration: {
+          path: "quotes.favoritesEnabled",
+          invalidMessage: "Quote favorites are not available at this time.",
+        },
       }),
     },
     getProfile: {

@@ -1,11 +1,12 @@
 import { JSXElement, Match, Show, Switch } from "solid-js";
 
 import { bp } from "../../../states/breakpoints";
+import { getShowBreakpointDebugger } from "../../../states/dev-tools";
 import { isDevEnvironment } from "../../../utils/env";
 
 export function MediaQueryDebugger(): JSXElement {
   return (
-    <Show when={isDevEnvironment()}>
+    <Show when={isDevEnvironment() && getShowBreakpointDebugger()}>
       <div class="fixed top-2 z-999999999999999 flex flex-col gap-2 font-mono text-xs text-text">
         <div class="flex w-min rounded-r bg-sub-alt px-2 py-1">
           <div class="mr-2">OLD</div>

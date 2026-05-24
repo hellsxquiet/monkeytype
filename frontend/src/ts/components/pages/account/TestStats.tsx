@@ -6,6 +6,7 @@ import {
   useResultStatsLiveQuery,
 } from "../../../collections/results";
 import { getConfig } from "../../../config/store";
+import { getSnapshot } from "../../../states/snapshot";
 import { secondsToString } from "../../../utils/date-and-time";
 import { Formatting } from "../../../utils/format";
 import AsyncContent from "../../common/AsyncContent";
@@ -38,13 +39,17 @@ export function TestStats(props: {
         >
           {(data) => {
             const [stats, last10] = data();
+            const totalWordsTyped = Math.max(
+              getSnapshot()?.typingStats.totalWordsTyped ?? 0,
+              stats.words,
+            );
 
             return (
               <>
                 <div class="flex items-center justify-center text-sub">
-                  estimated words typed{" "}
+                  total words typed ever{" "}
                   <span class="p-5 text-5xl text-text lg:text-5xl">
-                    {stats.words}
+                    {totalWordsTyped}
                   </span>
                 </div>
                 <div class="grid grid-cols-3 gap-4">

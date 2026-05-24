@@ -258,6 +258,7 @@ export const UserSchema = z.object({
   lastReultHashes: z.array(z.string()).optional(), //TODO: fix typo (it's in the db too)
   completedTests: z.number().int().nonnegative().optional(),
   startedTests: z.number().int().nonnegative().optional(),
+  totalWordsTyped: z.number().int().nonnegative().optional(),
   timeTyping: z
     .number()
     .nonnegative()
@@ -295,6 +296,7 @@ export type ResultFiltersGroupItem<T extends ResultFiltersGroup> =
 export const TypingStatsSchema = z.object({
   completedTests: z.number().int().nonnegative().optional(),
   startedTests: z.number().int().nonnegative().optional(),
+  totalWordsTyped: z.number().int().nonnegative().optional(),
   timeTyping: z.number().int().nonnegative().optional(),
 });
 export type TypingStats = z.infer<typeof TypingStatsSchema>;

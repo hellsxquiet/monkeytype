@@ -30,7 +30,7 @@ import { buildMonkeyMail } from "../../utils/monkey-mail";
 import * as WeeklyXpLeaderboard from "../../services/weekly-xp-leaderboard";
 import { UAParser } from "ua-parser-js";
 import { canFunboxGetPb } from "../../utils/pb";
-import { buildDbResult } from "../../utils/result";
+import { buildDbResult, countWordsTyped } from "../../utils/result";
 import { Configuration } from "@monkeytype/schemas/configuration";
 import { addImportantLog, addLog } from "../../dal/logs";
 import {
@@ -471,14 +471,17 @@ export async function addResult(
   const afk = completedEvent.afkDuration ?? 0;
   const totalDurationTypedSeconds =
     completedEvent.testDuration + completedEvent.incompleteTestSeconds - afk;
+  const totalWordsTyped = countWordsTyped(completedEvent);
   void UserDAL.updateTypingStats(
     uid,
     completedEvent.restartCount,
     totalDurationTypedSeconds,
+    totalWordsTyped,
   );
   void PublicDAL.updateStats(
     completedEvent.restartCount,
     totalDurationTypedSeconds,
+    totalWordsTyped,
   );
 
   const dailyLeaderboardsConfig = req.ctx.configuration.dailyLeaderboards;

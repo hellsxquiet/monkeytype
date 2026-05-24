@@ -50,7 +50,7 @@ export function Footer(): JSXElement {
               icon: "fa-code",
               fixedWidth: true,
             }}
-            href="https://github.com/monkeytypegame/monkeytype"
+            href="https://github.com/hellsxquiet/monkeytype"
           />
           <Button
             variant="text"

@@ -128,6 +128,7 @@ async function fetchTypingStats(): Promise<{
   timeTyping: GroupDisplay;
   testsStarted: GroupDisplay;
   testsCompleted: GroupDisplay;
+  totalWordsTyped: GroupDisplay;
 }> {
   const response = await Ape.public.getTypingStats();
 
@@ -143,6 +144,9 @@ async function fetchTypingStats(): Promise<{
   });
   const startedWithMagnitude = getNumberWithMagnitude(data.testsStarted);
   const completedWithMagnitude = getNumberWithMagnitude(data.testsCompleted);
+  const wordsTypedWithMagnitude = getNumberWithMagnitude(
+    data.totalWordsTyped ?? 0,
+  );
 
   const result = {
     timeTyping: {
@@ -165,6 +169,14 @@ async function fetchTypingStats(): Promise<{
           ? completedWithMagnitude.roundedTo2.toString()
           : completedWithMagnitude.rounded.toString(),
       subText: completedWithMagnitude.orderOfMagnitude,
+    },
+    totalWordsTyped: {
+      label: `${numberWithSpaces(data.totalWordsTyped ?? 0)} words`,
+      text:
+        wordsTypedWithMagnitude.rounded < 10
+          ? wordsTypedWithMagnitude.roundedTo2.toString()
+          : wordsTypedWithMagnitude.rounded.toString(),
+      subText: wordsTypedWithMagnitude.orderOfMagnitude,
     },
   };
   return result;

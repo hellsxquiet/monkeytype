@@ -11,5 +11,6 @@ export const TypingStatsSchema = z.object({
   timeTyping: z.number().nonnegative(),
   testsCompleted: z.number().int().nonnegative(),
   testsStarted: z.number().int().nonnegative(),
+  totalWordsTyped: z.number().int().nonnegative().optional(),
 });
 export type TypingStats = z.infer<typeof TypingStatsSchema>;

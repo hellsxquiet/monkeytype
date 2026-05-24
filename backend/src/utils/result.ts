@@ -36,6 +36,7 @@ export function buildDbResult(
     restartCount: ce.restartCount,
     incompleteTestSeconds: ce.incompleteTestSeconds,
     testDuration: ce.testDuration,
+    wordsTyped: countWordsTyped(ce),
     afkDuration: ce.afkDuration,
     tags: ce.tags,
     consistency: ce.consistency,
@@ -71,6 +72,25 @@ export function buildDbResult(
   if (res.isPb === false) delete res.isPb;
 
   return res;
+}
+
+export function countWordsTyped(result: CompletedEvent): number {
+  if (result.wordsTyped !== undefined) {
+    return result.wordsTyped;
+  }
+
+  if (result.mode === "words" && /^\d+$/.test(result.mode2)) {
+    const fixedWordCount = parseInt(result.mode2, 10);
+    if (fixedWordCount > 0) {
+      return fixedWordCount;
+    }
+  }
+
+  if (result.mode === "custom" && result.customText?.limit.mode === "word") {
+    return Math.round(result.customText.limit.value);
+  }
+
+  return Math.round((result.wpm / 60) * result.testDuration);
 }
 
 /**

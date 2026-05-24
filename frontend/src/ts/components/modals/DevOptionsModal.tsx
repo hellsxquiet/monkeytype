@@ -8,6 +8,12 @@ import { addXp } from "../../db";
 import { toggleCaretDebug } from "../../elements/caret";
 import { getInputElement } from "../../input/input-element";
 import { showPopup } from "../../modals/simple-modals";
+import {
+  getShowBreakpointDebugger,
+  getShowTanstackDevtools,
+  toggleBreakpointDebugger,
+  toggleTanstackDevtools,
+} from "../../states/dev-tools";
 import { showLoaderBar, hideLoaderBar } from "../../states/loader-bar";
 import { hideModal, showModal } from "../../states/modals";
 import {
@@ -63,6 +69,22 @@ export function DevOptionsModal(): JSXElement {
         setLocalMediaQueryDebugLevel(next);
         showNoticeNotification(`Setting media query debug level to ${next}`);
         setMediaQueryDebugLevel(next);
+      },
+    },
+    {
+      icon: "fa-desktop",
+      label: () =>
+        `Breakpoint Badge (${getShowBreakpointDebugger() ? "on" : "off"})`,
+      onClick: () => {
+        toggleBreakpointDebugger();
+      },
+    },
+    {
+      icon: "fa-tools",
+      label: () =>
+        `TanStack Devtools (${getShowTanstackDevtools() ? "on" : "off"})`,
+      onClick: () => {
+        toggleTanstackDevtools();
       },
     },
     {

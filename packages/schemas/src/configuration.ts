@@ -32,6 +32,7 @@ export const ConfigurationSchema = z.object({
       contentReportLimit: z.number().int().nonnegative(),
     }),
     submissionsEnabled: z.boolean(),
+    favoritesEnabled: z.boolean(),
     maxFavorites: z.number().int().nonnegative(),
   }),
   results: z.object({
@@ -111,6 +112,7 @@ export const ConfigurationSchema = z.object({
     xpRewardBrackets: z.array(RewardBracketSchema),
   }),
   leaderboards: z.object({
+    enabled: z.boolean(),
     minTimeTyping: z
       .number()
       .min(0)

@@ -13,6 +13,7 @@ export type PublicSpeedStatsDB = {
 export async function updateStats(
   restartCount: number,
   time: number,
+  totalWordsTyped: number,
 ): Promise<boolean> {
   await db.collection<PublicTypingStatsDB>("public").updateOne(
     { _id: "stats" },
@@ -20,6 +21,7 @@ export async function updateStats(
       $inc: {
         testsCompleted: 1,
         testsStarted: restartCount + 1,
+        totalWordsTyped,
         timeTyping: roundTo2(time),
       },
     },
@@ -65,5 +67,8 @@ export async function getTypingStats(): Promise<PublicTypingStatsDB> {
       "get typing stats",
     );
   }
-  return stats;
+  return {
+    totalWordsTyped: 0,
+    ...stats,
+  };
 }

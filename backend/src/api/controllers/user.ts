@@ -927,6 +927,7 @@ export async function getProfile(
     personalBests,
     completedTests,
     startedTests,
+    totalWordsTyped,
     timeTyping,
     addedAt,
     discordId,
@@ -964,6 +965,7 @@ export async function getProfile(
   const typingStats = {
     completedTests,
     startedTests,
+    totalWordsTyped,
     timeTyping,
   };
 

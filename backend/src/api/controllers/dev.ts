@@ -209,6 +209,40 @@ async function updateUser(uid: string): Promise<void> {
           completedTests: {
             $count: {},
           },
+          totalWordsTyped: {
+            $sum: {
+              $ifNull: [
+                "$wordsTyped",
+                {
+                  $cond: [
+                    {
+                      $and: [
+                        { $eq: ["$mode", "words"] },
+                        {
+                          $regexMatch: {
+                            input: { $toString: "$mode2" },
+                            regex: /^[0-9]+$/,
+                          },
+                        },
+                      ],
+                    },
+                    { $toInt: "$mode2" },
+                    {
+                      $round: [
+                        {
+                          $multiply: [
+                            { $divide: ["$wpm", 60] },
+                            "$testDuration",
+                          ],
+                        },
+                        0,
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         },
       },
     ])
@@ -217,6 +251,10 @@ async function updateUser(uid: string): Promise<void> {
   const timeTyping = stats.reduce((a, c) => (a + c["timeTyping"]) as number, 0);
   const completedTests = stats.reduce(
     (a, c) => (a + c["completedTests"]) as number,
+    0,
+  );
+  const totalWordsTyped = stats.reduce(
+    (a, c) => (a + c["totalWordsTyped"]) as number,
     0,
   );
 
@@ -296,6 +334,7 @@ async function updateUser(uid: string): Promise<void> {
         timeTyping: timeTyping,
         completedTests: completedTests,
         startedTests: Math.round(completedTests * 1.25),
+        totalWordsTyped: totalWordsTyped,
         personalBests: personalBests,
         lbPersonalBests: lbPersonalBests,
       },

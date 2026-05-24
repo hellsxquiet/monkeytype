@@ -1,4 +1,6 @@
-import { JSXElement, lazy, onMount, Suspense } from "solid-js";
+import { JSXElement, lazy, onMount, Show, Suspense } from "solid-js";
+
+import { getShowTanstackDevtools } from "../../states/dev-tools";
 
 let DevComponents: (() => JSXElement) | undefined;
 
@@ -31,7 +33,9 @@ if (import.meta.env.DEV) {
 
   DevComponents = () => (
     <Suspense>
-      <LazyTanstackDevtools />
+      <Show when={getShowTanstackDevtools()}>
+        <LazyTanstackDevtools />
+      </Show>
       <LazyDevOptionsModal />
       <LazySolidDevtoolsOverlay />
     </Suspense>

@@ -30,6 +30,7 @@ export const BASE_CONFIGURATION: Configuration = {
       contentReportLimit: 0,
     },
     submissionsEnabled: false,
+    favoritesEnabled: false,
     maxFavorites: 0,
   },
   admin: {
@@ -96,6 +97,7 @@ export const BASE_CONFIGURATION: Configuration = {
     xpRewardBrackets: [],
   },
   leaderboards: {
+    enabled: false,
     minTimeTyping: 2 * 60 * 60,
     weeklyXp: {
       enabled: false,
@@ -243,6 +245,10 @@ export const CONFIGURATION_FORM_SCHEMA: ObjectSchema<Configuration> = {
         submissionsEnabled: {
           type: "boolean",
           label: "Submissions Enabled",
+        },
+        favoritesEnabled: {
+          type: "boolean",
+          label: "Favorites Enabled",
         },
         maxFavorites: {
           type: "number",
@@ -550,6 +556,10 @@ export const CONFIGURATION_FORM_SCHEMA: ObjectSchema<Configuration> = {
       type: "object",
       label: "Leaderboards",
       fields: {
+        enabled: {
+          type: "boolean",
+          label: "All-Time Leaderboards Enabled",
+        },
         minTimeTyping: {
           type: "number",
           label: "Minimum typing time the user needs to get on a leaderboard",

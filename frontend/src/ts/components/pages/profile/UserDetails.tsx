@@ -29,6 +29,7 @@ import { cn } from "../../../utils/cn";
 import { secondsToString } from "../../../utils/date-and-time";
 import { formatXp, getXpDetails } from "../../../utils/levels";
 import { formatTypingStatsRatio } from "../../../utils/misc";
+import { numberWithSpaces } from "../../../utils/numbers";
 import { AutoShrink } from "../../common/AutoShrink";
 import { Balloon, BalloonProps } from "../../common/Balloon";
 import { Bar } from "../../common/Bar";
@@ -445,13 +446,13 @@ function TypingStats(props: {
         class={cn(
           "grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-2",
           props.variant === "basic" &&
-            "sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3 lg:text-[1.25rem]",
+            "sm:grid-cols-4 md:grid-cols-1 lg:grid-cols-4 lg:text-[1.25rem]",
           props.variant === "hasBioOrKeyboard" &&
             "sm:col-span-2 md:order-2 md:col-span-1 md:grid-cols-1",
           props.variant === "hasSocials" &&
-            "sm:col-span-2 sm:grid-cols-3 md:col-span-1 md:grid-cols-1 lg:grid-cols-3 xl:text-[1.25rem]",
+            "sm:col-span-2 sm:grid-cols-4 md:col-span-1 md:grid-cols-1 lg:grid-cols-4 xl:text-[1.25rem]",
           props.variant === "full" &&
-            "sm:col-span-2 sm:grid-cols-3 md:col-span-3 md:grid-cols-3 lg:order-2 lg:col-span-1 lg:grid-cols-1",
+            "sm:col-span-2 sm:grid-cols-4 md:col-span-3 md:grid-cols-4 lg:order-2 lg:col-span-1 lg:grid-cols-1",
         )}
       >
         <div class="flex flex-col">
@@ -481,6 +482,12 @@ function TypingStats(props: {
               true,
               true,
             )}
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="text-em-sm text-sub">words typed</div>
+          <div class="text-em-2xl leading-8">
+            {numberWithSpaces(props.typingStats.totalWordsTyped ?? 0)}
           </div>
         </div>
       </div>

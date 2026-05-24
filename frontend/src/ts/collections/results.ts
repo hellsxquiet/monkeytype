@@ -204,9 +204,20 @@ function normalizeResult(
   return {
     ...result,
     timeTyping: calcTimeTyping(result),
-    words: Math.round((result.wpm / 60) * result.testDuration),
+    words: getWordsTyped(result),
     dayTimestamp: resultDate.getTime(),
   } as SnapshotResult<Mode>;
+}
+
+function getWordsTyped(result: ResultMinified): number {
+  if (result.wordsTyped !== undefined) return result.wordsTyped;
+  if (result.mode === "words" && /^\d+$/.test(result.mode2)) {
+    const fixedWordCount = parseInt(result.mode2, 10);
+    if (fixedWordCount > 0) {
+      return fixedWordCount;
+    }
+  }
+  return Math.round((result.wpm / 60) * result.testDuration);
 }
 
 const resultsCollection = createCollection(

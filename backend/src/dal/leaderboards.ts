@@ -180,10 +180,16 @@ export async function update(
   message: string;
   rank?: number;
 }> {
+  const config = (await getCachedConfiguration(true)).leaderboards;
+  if (!config.enabled) {
+    return {
+      message: "Leaderboards are disabled",
+    };
+  }
+
   const key = `lbPersonalBests.${mode}.${mode2}.${language}`;
   const lbCollectionName = getCollectionName({ language, mode, mode2 });
-  const minTimeTyping = (await getCachedConfiguration(true)).leaderboards
-    .minTimeTyping;
+  const minTimeTyping = config.minTimeTyping;
   const lb = db.collection<DBUser>("users").aggregate<LeaderboardEntry>(
     [
       {

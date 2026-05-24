@@ -1,19 +1,173 @@
 {
   "configuration": {
     "results": {
-      "savingEnabled": true
+      "savingEnabled": true,
+      "objectHashCheckEnabled": true,
+      "filterPresets": {
+        "enabled": true,
+        "maxPresetsPerUser": 25
+      },
+      "limits": {
+        "regularUser": 1000,
+        "premiumUser": 10000
+      },
+      "maxBatchSize": 1000
+    },
+    "quotes": {
+      "reporting": {
+        "enabled": true,
+        "maxReports": 1000,
+        "contentReportLimit": 10
+      },
+      "submissionsEnabled": true,
+      "favoritesEnabled": true,
+      "maxFavorites": 1000
+    },
+    "admin": {
+      "endpointsEnabled": true
+    },
+    "apeKeys": {
+      "endpointsEnabled": true,
+      "acceptKeys": true,
+      "maxKeysPerUser": 10,
+      "apeKeyBytes": 24,
+      "apeKeySaltRounds": 5
     },
     "users": {
-      "signUp": false,
-      "profiles": {
+      "signUp": true,
+      "lastHashesCheck": {
+        "enabled": true,
+        "maxHashes": 10
+      },
+      "discordIntegration": {
         "enabled": false
+      },
+      "autoBan": {
+        "enabled": false,
+        "maxCount": 5,
+        "maxHours": 1
+      },
+      "profiles": {
+        "enabled": true
+      },
+      "xp": {
+        "enabled": true,
+        "funboxBonus": 5,
+        "gainMultiplier": 1,
+        "maxDailyBonus": 1000,
+        "minDailyBonus": 25,
+        "streak": {
+          "enabled": true,
+          "maxStreakDays": 100,
+          "maxStreakMultiplier": 2
+        }
+      },
+      "inbox": {
+        "enabled": true,
+        "maxMail": 50
+      },
+      "premium": {
+        "enabled": true
+      }
+    },
+    "rateLimiting": {
+      "badAuthentication": {
+        "enabled": false,
+        "penalty": 0,
+        "flaggedStatusCodes": []
       }
     },
     "dailyLeaderboards": {
-      "enabled": false
+      "enabled": true,
+      "maxResults": 250,
+      "leaderboardExpirationTimeInDays": 1,
+      "validModeRules": [
+        {
+          "language": "english",
+          "mode": "time",
+          "mode2": "15"
+        },
+        {
+          "language": "english",
+          "mode": "time",
+          "mode2": "60"
+        },
+        {
+          "language": "english",
+          "mode": "words",
+          "mode2": "10"
+        },
+        {
+          "language": "english",
+          "mode": "words",
+          "mode2": "50"
+        }
+      ],
+      "scheduleRewardsModeRules": [
+        {
+          "language": "english",
+          "mode": "time",
+          "mode2": "15"
+        },
+        {
+          "language": "english",
+          "mode": "time",
+          "mode2": "60"
+        }
+      ],
+      "topResultsToAnnounce": 10,
+      "xpRewardBrackets": [
+        {
+          "minRank": 1,
+          "maxRank": 1,
+          "minReward": 1000,
+          "maxReward": 1000
+        },
+        {
+          "minRank": 2,
+          "maxRank": 5,
+          "minReward": 500,
+          "maxReward": 800
+        },
+        {
+          "minRank": 6,
+          "maxRank": 10,
+          "minReward": 100,
+          "maxReward": 300
+        }
+      ]
     },
     "leaderboards": {
-      "minTimeTyping": 0
+      "enabled": true,
+      "minTimeTyping": 0,
+      "weeklyXp": {
+        "enabled": true,
+        "expirationTimeInDays": 30,
+        "xpRewardBrackets": [
+          {
+            "minRank": 1,
+            "maxRank": 1,
+            "minReward": 2000,
+            "maxReward": 2000
+          },
+          {
+            "minRank": 2,
+            "maxRank": 5,
+            "minReward": 1000,
+            "maxReward": 1500
+          },
+          {
+            "minRank": 6,
+            "maxRank": 10,
+            "minReward": 250,
+            "maxReward": 750
+          }
+        ]
+      }
+    },
+    "connections": {
+      "enabled": true,
+      "maxPerUser": 100
     }
   }
 }

@@ -76,6 +76,7 @@ const ResultBaseSchema = z.object({
   quoteLength: z.number().int().nonnegative().max(3).optional(),
   timestamp: z.number().int().nonnegative(),
   testDuration: z.number().min(1),
+  wordsTyped: z.number().int().nonnegative().optional(),
   consistency: PercentageSchema,
   keyConsistency: PercentageSchema,
   chartData: ChartDataSchema.or(z.literal("toolong")),
